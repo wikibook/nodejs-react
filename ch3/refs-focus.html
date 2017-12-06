@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+  </head><body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // 입력 양식 컴포넌트입니다.
+      class LoginForm extends React.Component {
+        constructor (props) {
+          super(props)
+          this.state = {
+            user: '',
+            pass: ''
+          }
+        }
+        render () {
+          const doSubmit = e => this.doSubmit(e)
+          const doChange = e => this.doChange(e)
+          // 렌더링 내용 --- (※1)
+          return (<form onSubmit={doSubmit}>
+            <label>사용자 이름:<br />
+              <input type='text' name='user'
+                ref={ (i)=>{ this.user = i } }
+                value={this.state.user}
+                onChange={doChange} />
+            </label><br />
+            <label>비밀번호:<br />
+              <input type='password' name='pass'
+                ref={ (i) => { this.pass = i } }
+                value={this.state.pass}
+                onChange={doChange} />
+            </label><br />
+            <input type='submit' value='전송' />
+          </form>)
+        }
+        doChange (e) {
+          const key = e.target.name
+          this.setState({
+            [key]: e.target.value
+          })
+        }
+        doSubmit (e) {
+          e.preventDefault()
+          // 값이 없을 경우 input 요소에 초점을 맞춥니다. --- (※2)
+          if (!this.state.user) {
+            this.user.focus()
+            return
+          }
+          if (!this.state.pass) {
+            this.pass.focus()
+            return
+          }
+          window.alert(JSON.stringify(this.state))
+        }
+      }
+      // DOM의 내용을 변경합니다.
+      ReactDOM.render(<div><LoginForm /></div>,
+        document.getElementById('root'))
+    </script>
+</body></html>

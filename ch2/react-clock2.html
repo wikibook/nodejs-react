@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+</head><body>
+  <div id="root"></div>
+  <script type="text/babel">
+  // 정기적으로 시간을 출력합니다.
+  setInterval(showClock, 1000)
+  // 매 초마다 실행되는 함수입니다.
+  function showClock () {
+      const d = new Date()
+      const [hour, min, sec] = [ // 시분초를 변수에 할당합니다. --- (※1)
+        d.getHours(),
+        d.getMinutes(),
+        d.getSeconds()]
+      const z2 = (v) => { // 0으로 채우는 함수를 정의합니다. --- (※2)
+        const s = "00" + v
+        return s.substr(s.length - 2, 2)
+      }
+      // 출력할 DOM을 지정합니다. --- (※3)
+      const elem = (<div>{z2(hour)}:{z2(min)}:{z2(sec)}</div>);
+      // DOM의 내용을 변경합니다.
+      ReactDOM.render(elem,
+        document.getElementById("root"))
+    }
+  </script>
+</body></html>

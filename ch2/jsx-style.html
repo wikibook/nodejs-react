@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+</head><body>
+  <div id="root"></div>
+  <script type="text/babel">
+    // 리액트로 DOM의 내용을 변경합니다.
+    ReactDOM.render(
+      getDOM(),
+      document.getElementById('root')
+    )
+    // 요소를 반환하는 함수입니다.
+    function getDOM() {
+      // 객체로 스타일을 지정합니다. --- (※1)
+      const css1 = { // css 스타일 --- (※2)
+        "color": 'red',
+        "background-color": '#f0f0ff',
+        "font-size": '2em'
+      }
+      const css2 = { // 자바스크립트 스타일 --- (※3)
+        color: 'blue',
+        backgroundColor: '#fff0f0',
+        fontSize: '2em'
+      }
+      // JSX로 DOM을 지정합니다.
+      return (
+        <div>
+          <p style={css1}>죄는 미워하되 사람은 미워하지 말라</p>
+          <p style={css2}>이것 또한 지나가리라</p>
+        </div>
+      )
+    }
+  </script>
+</body></html>

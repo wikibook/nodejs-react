@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+  </head><body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // 상태를 가진 컴포넌트를 정의합니다. --- (※1)
+      class CBox extends React.Component {
+        // 생성자 --- (※2)
+        constructor (props) {
+          super(props)
+          // 상태를 초기화합니다.
+          this.state = {checked: false}
+        }
+        render () {
+          // 체크되지 않았을 때의 상태 --- (※3)
+          let mark = '□'
+          let bstyle = { fontWeight: 'normal' }
+          // 체크돼 있는지 확인합니다. --- (※4)
+          if (this.state.checked) {
+            mark = '■'
+            bstyle = { fontWeight: 'bold' }
+          }
+          // 클릭했을 때의 이벤트를 지정합니다. --- (※5)
+          const clickHandler = (e) => {
+            const newValue = !this.state.checked
+            this.setState({checked: newValue})
+          }
+          // 렌더링할 내용을 반환합니다. --- (※6)
+          return (
+            <div onClick={clickHandler} style={bstyle}>
+              {mark} {this.props.label}
+            </div>
+          )
+        }
+      }
+      // 리액트로 DOM의 내용을 변경합니다. --- (※7)
+      const dom = <div>
+        <CBox label="Apple" />
+        <CBox label="Banana" />
+        <CBox label="Orange" />
+        <CBox label="Mango" />
+      </div>
+      ReactDOM.render(dom,
+        document.getElementById('root'))
+    </script>
+</body></html>

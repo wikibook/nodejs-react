@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+</head><body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // 컴포넌트를 정의합니다.
+      class Hello extends React.Component {
+        render () {
+          // 이벤트를 정의합니다.
+          const clickHandler = (e) => {
+            window.alert('안녕하세요.')
+          }
+          // 클릭 이벤트를 지정합니다.
+          return (
+            <div onClick={clickHandler}>Click Me</div>
+          )
+        }
+      }
+      // 컴포넌트를 사용합니다.
+      ReactDOM.render(
+        <Hello />,
+        document.getElementById('root'))
+    </script>
+  </body></html>
