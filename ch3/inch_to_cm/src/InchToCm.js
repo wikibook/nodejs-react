@@ -21,7 +21,7 @@ export default class InchToCm extends Component {
   // cm가 변경됐을 때  --- (※3)
   cmChanged (e) {
     const cmValue = e.value
-    const inchValue = cmValue * 2.54
+    const inchValue = cmValue / 2.54
     this.setState({
       inch: inchValue,
       cm: cmValue
